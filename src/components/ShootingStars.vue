@@ -70,9 +70,8 @@ onMounted(() => {
   transform: translateY(-50%);
   width: 300px;
   height: 1px;
-  /* Flipped trail: Attached to the left side */
-  /* Gradient from transparent (tail tip) to white (head connection) */
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,1));
+  /* Trail gradient: white near star, fading to transparent at the far end */
+  background: linear-gradient(90deg, rgba(255,255,255,1), transparent);
   right: auto;
   left: 1px; /* Attached to left side of the star */
 }
