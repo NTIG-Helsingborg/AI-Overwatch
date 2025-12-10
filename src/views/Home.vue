@@ -57,13 +57,13 @@ const recentEvents = computed(() => {
 <style scoped>
 .home-container {
   min-height: 100vh;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; Removed to show shooting stars */
   color: #ffffff;
 }
 
 .hero-section {
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  background: linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(42,42,42,0.85) 100%);
   border-bottom: 2px solid #3a3a3a;
 }
 

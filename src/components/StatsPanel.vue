@@ -67,7 +67,7 @@ const enteredRoomData = computed(() => processEventData('person entered room'))
   flex-direction: column;
   gap: 12px;
   padding: 20px;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; Removed */
   overflow: hidden;
 }
 </style>
