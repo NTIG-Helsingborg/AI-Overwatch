@@ -71,7 +71,7 @@ const toggleLive = () => {
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; Removed */
   overflow: hidden;
 }
 

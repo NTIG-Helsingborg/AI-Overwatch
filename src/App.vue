@@ -1,5 +1,10 @@
+<script setup>
+import ShootingStars from './components/ShootingStars.vue'
+</script>
+
 <template>
   <div id="app">
+    <ShootingStars />
     <nav class="main-nav">
       <router-link to="/Home">Home</router-link>
       <router-link to="/">Dashboard</router-link>
