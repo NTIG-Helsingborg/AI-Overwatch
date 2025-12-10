@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import EventSidebar from '../components/EventSidebar.vue'
-import StatsPanel from '../components/StatsPanel.vue'
 
 const events = ref([])
 const isLive = ref(true)
@@ -60,7 +59,13 @@ const toggleLive = () => {
     </div>
     <div class="dashboard-content">
       <EventSidebar :events="events" />
-      <StatsPanel :events="events" />
+      <div class="live-feed-container">
+        <div class="live-feed-placeholder">
+          <div class="feed-icon">📹</div>
+          <h2>Live Camera Feed</h2>
+          <p>Camera feed will be displayed here</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -138,5 +143,48 @@ const toggleLive = () => {
   display: flex;
   flex: 1;
   overflow: hidden;
+}
+
+.live-feed-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 93%;
+  width: 90%;
+  background-color: rgba(26, 26, 26, 0.5);
+}
+
+.live-feed-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  border: 2px dashed #4a4a4a;
+  color: #888;
+  text-align: center;
+}
+
+.feed-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.live-feed-placeholder h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.live-feed-placeholder p {
+  color: #888;
+  font-size: 1rem;
+  margin: 0;
 }
 </style>
