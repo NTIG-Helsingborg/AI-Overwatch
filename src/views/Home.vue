@@ -2,6 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import EventCard from '../components/EventCard.vue'
 import mockEvents from '../data/mockEvents.json'
+import cameraImage from '../assets/cartoonCamera.png'
 
 const events = ref([])
 
@@ -30,12 +31,15 @@ const recentEvents = computed(() => {
         </p>
         <div class="hero-buttons">
           <router-link to="/live" class="btn btn-primary">
-            Go Live
+            Watch Live
           </router-link>
           <router-link to="/" class="btn btn-secondary">
             View Dashboard
           </router-link>
         </div>
+      </div>
+      <div class="hero-image">
+        <img :src="cameraImage" alt="security camera" />
       </div>
     </div>
 
@@ -62,15 +66,51 @@ const recentEvents = computed(() => {
 }
 
 .hero-section {
-  padding: 4rem 2rem;
+    padding-left: 8%; 
+    padding-bottom: 10%;
   background: linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(42,42,42,0.85) 100%);
   border-bottom: 2px solid #3a3a3a;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+    padding-top: 4%;
+  flex: 0 0 60%;
+  text-align: left;
+  max-width: 800px;
+}
+
+.hero-image {
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -3rem;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  transform: scaleX(-1);
+}
+
+
+
+@media (max-width: 968px) {
+  .hero-section {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
 }
 
 .hero-title {
@@ -94,15 +134,19 @@ const recentEvents = computed(() => {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #d0d0d0;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
+  margin: 0 0 3rem 0;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+}
+
+@media (max-width: 968px) {
+  .hero-buttons {
+    justify-content: center;
+  }
 }
 
 .btn {
