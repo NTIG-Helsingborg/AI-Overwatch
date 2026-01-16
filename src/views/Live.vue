@@ -60,10 +60,11 @@ const toggleLive = () => {
     <div class="dashboard-content">
       <EventSidebar :events="events" />
       <div class="live-feed-container">
+        <div class="feed-header">
+          <h2>Live Video Feed</h2>
+        </div>
         <div class="live-feed-placeholder">
-          <div class="feed-icon">📹</div>
-          <h2>Live Camera Feed</h2>
-          <p>Camera feed will be displayed here</p>
+<img src="http://192.168.50.63:5000/video" style="max-width: 60%; height: auto; border: 2px solid #4a4a4a; border-radius: 8px;">
         </div>
       </div>
     </div>
@@ -75,8 +76,8 @@ const toggleLive = () => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
-  /* background-color: #1a1a1a; Removed */
+  height: 100%;
+  background-color: #1a1a1a;
   overflow: hidden;
 }
 
@@ -148,12 +149,25 @@ const toggleLive = () => {
 .live-feed-container {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px;
+  padding-top: 40px;
   height: 93%;
   width: 90%;
   background-color: rgba(26, 26, 26, 0.5);
+}
+
+.feed-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.feed-header h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
 .live-feed-placeholder {
@@ -161,13 +175,14 @@ const toggleLive = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  aspect-ratio: 16/9;
   background-color: #2a2a2a;
   border-radius: 12px;
-  border: 2px dashed #4a4a4a;
+  border: 2px solid #4a4a4a;
   color: #888;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .feed-icon {

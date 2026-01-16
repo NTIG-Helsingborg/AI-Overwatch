@@ -22,7 +22,7 @@ onMounted(() => {
 .dashboard-container {
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* background-color: #1a1a1a; Removed */
   overflow: hidden;
 }

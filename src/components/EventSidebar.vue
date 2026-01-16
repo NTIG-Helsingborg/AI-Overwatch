@@ -39,7 +39,7 @@ const formatTimestamp = (timestamp) => {
 <style scoped>
 .sidebar {
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background-color: #1e1e1e;
   color: #ffffff;
   padding: 20px;
@@ -47,6 +47,7 @@ const formatTimestamp = (timestamp) => {
   border-right: 1px solid #333;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  flex-shrink: 0;
 }
 
 .sidebar::-webkit-scrollbar {

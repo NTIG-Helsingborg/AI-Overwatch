@@ -63,6 +63,7 @@ const getDayLabel = (date) => {
   display: flex;
   flex-direction: column;
   flex: 1;
+  max-height: 170px;
 }
 
 .graph-title {
