@@ -39,11 +39,11 @@ const processEventData = (gestureType) => {
 }
 
 // Update these to match your actual gesture types from the database
-const thumbsUpData = computed(() => processEventData('thumbs_up'))
-const thumbsDownData = computed(() => processEventData('thumbs_down'))
-const victoryData = computed(() => processEventData('victory'))
-const closedPalmData = computed(() => processEventData('closed_palm'))
-const openPalmData = computed(() => processEventData('open_palm'))
+const thumbsUpData = computed(() => processEventData('Thumb_Up'))
+const thumbsDownData = computed(() => processEventData('Thumb_Down'))
+const victoryData = computed(() => processEventData('Victory'))
+const closedPalmData = computed(() => processEventData('Closed_Fist'))
+const openPalmData = computed(() => processEventData('Open_Palm'))
 </script>
 
 <template>
