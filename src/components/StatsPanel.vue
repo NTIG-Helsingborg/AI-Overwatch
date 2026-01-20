@@ -25,7 +25,9 @@ const processEventData = (gestureType) => {
   
   const dayCounts = last7Days.map(date => {
     const count = props.events.filter(event => {
-      const eventDate = new Date(event.timestamp || event.detected_at || event.created_at).toISOString().split('T')[0]
+      const timestamp = event.timestamp || event.detected_at || event.created_at
+      // Extract just the date part (YYYY-MM-DD) from the timestamp
+      const eventDate = timestamp.split(' ')[0].split('T')[0]
       return eventDate === date && (event.gesture_type === gestureType || event.name === gestureType)
     }).length
     
@@ -42,7 +44,7 @@ const processEventData = (gestureType) => {
 const thumbsUpData = computed(() => processEventData('Thumb_Up'))
 const thumbsDownData = computed(() => processEventData('Thumb_Down'))
 const victoryData = computed(() => processEventData('Victory'))
-const closedPalmData = computed(() => processEventData('Closed_Fist'))
+const closedPalmData = computed(() => processEventData('Closed_ist'))
 const openPalmData = computed(() => processEventData('Open_Palm'))
 </script>
 
