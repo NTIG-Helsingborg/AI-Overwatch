@@ -3,9 +3,7 @@ import { ref, onMounted } from 'vue'
 import EventSidebar from '../components/EventSidebar.vue'
 import StatsPanel from '../components/StatsPanel.vue'
 
-const events = ref([])
-
-onMounted(async () => {
+const fetchLiveEvents = async () => {
   try {
     const response = await fetch('/api/gestures')
     const data = await response.json()
@@ -14,6 +12,11 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error fetching gestures:', error)
   }
+}
+
+onMounted(() => {
+  fetchLiveEvents()
+  updateInterval = setInterval(fetchLiveEvents, 2000) // Check every 2 seconds
 })
 </script>
 
