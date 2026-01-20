@@ -63,6 +63,8 @@ const recentEvents = computed(() => {
   min-height: 100vh;
   /* background-color: #1a1a1a; Removed to show shooting stars */
   color: #ffffff;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .hero-section {

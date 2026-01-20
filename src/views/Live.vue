@@ -53,10 +53,11 @@ const toggleLive = () => {
       <EventSidebar :events="events" />
       <div class="live-feed-container">
         <div class="feed-header">
-          <h2>Live Video Feed</h2>
+          
         </div>
         <div class="live-feed-placeholder">
-<img src="http://192.168.50.63:5000/video" style="max-width: 60%; height: auto; border: 2px solid #4a4a4a; border-radius: 8px;">
+          <h2>Live Video Feed</h2>
+<img src="http://192.168.50.63:5000/video" style="max-width: 80%; height: auto; border: 2px solid #4a4a4a; border-radius: 8px;">
         </div>
       </div>
     </div>
@@ -142,9 +143,7 @@ const toggleLive = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-top: 40px;
+  align-items: center;  
   height: 93%;
   width: 90%;
   background-color: rgba(26, 26, 26, 0.5);
@@ -167,14 +166,14 @@ const toggleLive = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60%;
-  aspect-ratio: 16/9;
+  padding: 10px;
   background-color: #2a2a2a;
   border-radius: 12px;
   border: 2px solid #4a4a4a;
   color: #888;
   text-align: center;
   box-sizing: border-box;
+  padding-top: 3%;
 }
 
 .feed-icon {
