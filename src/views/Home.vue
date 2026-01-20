@@ -1,13 +1,32 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import EventCard from '../components/EventCard.vue'
 import mockEvents from '../data/mockEvents.json'
 import cameraImage from '../assets/cartoonCamera.png'
 
 const events = ref([])
+let updateInterval = null
+
+const fetchEvents = async () => {
+  try {
+    const response = await fetch('/api/gestures')
+    const data = await response.json()
+    console.log('Fetched gestures:', data)
+    events.value = data
+  } catch (error) {
+    console.error('Error fetching gestures:', error)
+  }
+}
 
 onMounted(() => {
-  events.value = mockEvents
+  fetchEvents()
+  updateInterval = setInterval(fetchEvents, 2000) // Check every 2 seconds
+})
+
+onUnmounted(() => {
+  if (updateInterval) {
+    clearInterval(updateInterval)
+  }
 })
 
 const recentEvents = computed(() => {

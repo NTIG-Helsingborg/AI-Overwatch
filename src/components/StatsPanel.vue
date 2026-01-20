@@ -42,6 +42,8 @@ const processEventData = (gestureType) => {
 const thumbsUpData = computed(() => processEventData('thumbs_up'))
 const thumbsDownData = computed(() => processEventData('thumbs_down'))
 const victoryData = computed(() => processEventData('victory'))
+const closedPalmData = computed(() => processEventData('closed_palm'))
+const openPalmData = computed(() => processEventData('open_palm'))
 </script>
 
 <template>
@@ -57,6 +59,14 @@ const victoryData = computed(() => processEventData('victory'))
     <BlockGraph 
       title="Victory" 
       :data="victoryData" 
+    />
+    <BlockGraph 
+      title="Closed Palm" 
+      :data="closedPalmData" 
+    />
+    <BlockGraph 
+      title="Open Palm" 
+      :data="openPalmData" 
     />
   </div>
 </template>
