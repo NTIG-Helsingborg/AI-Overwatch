@@ -48,7 +48,7 @@ const processEventData = (gestureType) => {
 const thumbsUpData = computed(() => processEventData('Thumb_Up'))
 const thumbsDownData = computed(() => processEventData('Thumb_Down'))
 const victoryData = computed(() => processEventData('Victory'))
-const closedPalmData = computed(() => processEventData('Closed_ist'))
+const closedPalmData = computed(() => processEventData('Closed_Fist'))
 const openPalmData = computed(() => processEventData('Open_Palm'))
 </script>
 
