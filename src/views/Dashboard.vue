@@ -1,9 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import EventSidebar from '../components/EventSidebar.vue'
 import StatsPanel from '../components/StatsPanel.vue'
 
-const fetchLiveEvents = async () => {
+const events = ref([])
+let updateInterval = null
+
+const fetchEvents = async () => {
   try {
     const response = await fetch('/api/gestures')
     const data = await response.json()
@@ -15,8 +18,14 @@ const fetchLiveEvents = async () => {
 }
 
 onMounted(() => {
-  fetchLiveEvents()
-  updateInterval = setInterval(fetchLiveEvents, 2000) // Check every 2 seconds
+  fetchEvents()
+  updateInterval = setInterval(fetchEvents, 2000) // Check every 2 seconds
+})
+
+onUnmounted(() => {
+  if (updateInterval) {
+    clearInterval(updateInterval)
+  }
 })
 </script>
 
