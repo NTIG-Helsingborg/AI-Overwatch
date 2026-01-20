@@ -9,11 +9,16 @@ const props = defineProps({
 })
 
 const sortedEvents = computed(() => {
-  return [...props.events].sort((a, b) => {
-    const timeA = new Date(a.timestamp || a.detected_at || a.created_at)
-    const timeB = new Date(b.timestamp || b.detected_at || b.created_at)
-    return timeB - timeA
-  })
+  return [...props.events]
+    .filter(event => {
+      const gestureName = event.gesture_type || event.name
+      return gestureName && gestureName.toLowerCase() !== 'none'
+    })
+    .sort((a, b) => {
+      const timeA = new Date(a.timestamp || a.detected_at || a.created_at)
+      const timeB = new Date(b.timestamp || b.detected_at || b.created_at)
+      return timeB - timeA
+    })
 })
 
 const formatTimestamp = (timestamp) => {
