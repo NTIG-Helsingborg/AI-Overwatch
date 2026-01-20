@@ -8,8 +8,9 @@ let updateInterval = null
 
 const fetchLiveEvents = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/gestures')
+    const response = await fetch('/api/gestures')
     const data = await response.json()
+    console.log('Fetched gestures:', data)
     events.value = data
   } catch (error) {
     console.error('Error fetching gestures:', error)
