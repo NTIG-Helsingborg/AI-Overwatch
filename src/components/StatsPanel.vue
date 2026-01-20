@@ -20,13 +20,13 @@ const getLast7Days = () => {
   return days
 }
 
-const processEventData = (eventName) => {
+const processEventData = (gestureType) => {
   const last7Days = getLast7Days()
   
   const dayCounts = last7Days.map(date => {
     const count = props.events.filter(event => {
-      const eventDate = new Date(event.timestamp).toISOString().split('T')[0]
-      return eventDate === date && event.name === eventName
+      const eventDate = new Date(event.timestamp || event.detected_at || event.created_at).toISOString().split('T')[0]
+      return eventDate === date && (event.gesture_type === gestureType || event.name === gestureType)
     }).length
     
     return {
@@ -38,24 +38,25 @@ const processEventData = (eventName) => {
   return dayCounts
 }
 
-const drankWaterData = computed(() => processEventData('drank water'))
-const thumbsUpData = computed(() => processEventData('person gave a thumbs up'))
-const enteredRoomData = computed(() => processEventData('person entered room'))
+// Update these to match your actual gesture types from the database
+const thumbsUpData = computed(() => processEventData('thumbs_up'))
+const thumbsDownData = computed(() => processEventData('thumbs_down'))
+const victoryData = computed(() => processEventData('victory'))
 </script>
 
 <template>
   <div class="stats-panel">
     <BlockGraph 
-      title="Drank Water" 
-      :data="drankWaterData" 
-    />
-    <BlockGraph 
       title="Thumbs Up" 
       :data="thumbsUpData" 
     />
     <BlockGraph 
-      title="Entered Room" 
-      :data="enteredRoomData" 
+      title="Thumbs Down" 
+      :data="thumbsDownData" 
+    />
+    <BlockGraph 
+      title="Victory" 
+      :data="victoryData" 
     />
   </div>
 </template>

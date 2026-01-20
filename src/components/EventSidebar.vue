@@ -10,13 +10,32 @@ const props = defineProps({
 
 const sortedEvents = computed(() => {
   return [...props.events].sort((a, b) => {
-    return new Date(b.timestamp) - new Date(a.timestamp)
+    const timeA = new Date(a.timestamp || a.detected_at || a.created_at)
+    const timeB = new Date(b.timestamp || b.detected_at || b.created_at)
+    return timeB - timeA
   })
 })
 
 const formatTimestamp = (timestamp) => {
+  if (!timestamp) return 'Unknown time'
+  
   const date = new Date(timestamp)
-  return date.toLocaleString()
+  if (isNaN(date.getTime())) return 'Invalid time'
+  
+  const now = new Date()
+  const diffInMinutes = Math.floor((now - date) / 60000)
+  
+  if (diffInMinutes < 1) {
+    return 'Just now'
+  } else if (diffInMinutes < 60) {
+    return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`
+  } else if (diffInMinutes < 1440) {
+    const hours = Math.floor(diffInMinutes / 60)
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`
+  } else {
+    const days = Math.floor(diffInMinutes / 1440)
+    return `${days} day${days > 1 ? 's' : ''} ago`
+  }
 }
 </script>
 
@@ -29,8 +48,8 @@ const formatTimestamp = (timestamp) => {
         :key="index" 
         class="event-item"
       >
-        <div class="event-name">{{ event.name }}</div>
-        <div class="event-time">{{ formatTimestamp(event.timestamp) }}</div>
+        <div class="event-name">{{ event.gesture_type || event.name }}</div>
+        <div class="event-time">{{ formatTimestamp(event.timestamp || event.detected_at || event.created_at) }}</div>
       </div>
     </div>
   </aside>

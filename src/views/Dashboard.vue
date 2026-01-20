@@ -2,12 +2,17 @@
 import { ref, onMounted } from 'vue'
 import EventSidebar from '../components/EventSidebar.vue'
 import StatsPanel from '../components/StatsPanel.vue'
-import mockEvents from '../data/mockEvents.json'
 
 const events = ref([])
 
-onMounted(() => {
-  events.value = mockEvents
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api/gestures')
+    const data = await response.json()
+    events.value = data
+  } catch (error) {
+    console.error('Error fetching gestures:', error)
+  }
 })
 </script>
 

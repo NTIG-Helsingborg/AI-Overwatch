@@ -6,31 +6,22 @@ const events = ref([])
 const isLive = ref(true)
 let updateInterval = null
 
-// Simulera live-uppdateringar
-const fetchLiveEvents = () => {
-  // Här kan du senare koppla till en riktig websocket eller API
-  console.log('Hämtar live-data...')
-  
-  // Exempel: lägg till ett nytt event varje uppdatering
-  const newEvent = {
-    id: Date.now(),
-    type: ['info', 'warning', 'error'][Math.floor(Math.random() * 3)],
-    timestamp: new Date().toISOString(),
-    message: `Live event ${new Date().toLocaleTimeString()}`,
-    source: 'Live System'
+const fetchLiveEvents = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api/gestures')
+    const data = await response.json()
+    events.value = data
+  } catch (error) {
+    console.error('Error fetching gestures:', error)
   }
-  
-  events.value = [newEvent, ...events.value].slice(0, 50) // Behåll max 50 events
 }
 
 onMounted(() => {
-  // Starta live-uppdateringar
   fetchLiveEvents()
-  updateInterval = setInterval(fetchLiveEvents, 5000) // Uppdatera var 5:e sekund
+  updateInterval = setInterval(fetchLiveEvents, 2000) // Check every 2 seconds
 })
 
 onUnmounted(() => {
-  // Stoppa live-uppdateringar när komponenten avmonteras
   if (updateInterval) {
     clearInterval(updateInterval)
   }
@@ -39,7 +30,8 @@ onUnmounted(() => {
 const toggleLive = () => {
   isLive.value = !isLive.value
   if (isLive.value) {
-    updateInterval = setInterval(fetchLiveEvents, 5000)
+    fetchLiveEvents()
+    updateInterval = setInterval(fetchLiveEvents, 2000)
   } else {
     clearInterval(updateInterval)
   }

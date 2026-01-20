@@ -13,12 +13,18 @@ const props = defineProps({
 })
 
 const formatTimestamp = (timestamp) => {
+  if (!timestamp) return 'Unknown time'
+  
   const date = new Date(timestamp)
+  if (isNaN(date.getTime())) return 'Invalid time'
+  
   const now = new Date()
   const diffInMinutes = Math.floor((now - date) / 60000)
   
-  if (diffInMinutes < 60) {
-    return `${diffInMinutes} minutes ago`
+  if (diffInMinutes < 1) {
+    return 'Just now'
+  } else if (diffInMinutes < 60) {
+    return `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`
   } else if (diffInMinutes < 1440) {
     const hours = Math.floor(diffInMinutes / 60)
     return `${hours} hour${hours > 1 ? 's' : ''} ago`
@@ -28,16 +34,13 @@ const formatTimestamp = (timestamp) => {
   }
 }
 
-
-
-const formattedTime = computed(() => formatTimestamp(props.event.timestamp))
-const eventIcon = computed(() => getEventIcon(props.event.name))
+const formattedTime = computed(() => formatTimestamp(props.event.timestamp || props.event.detected_at || props.event.created_at))
 </script>
 
 <template>
   <div class="event-card">
     <div class="event-details">
-      <h3 class="event-name">{{ event.name }}</h3>
+      <h3 class="event-name">{{ event.gesture_type || event.name }}</h3>
       <p class="event-time">{{ formattedTime }}</p>
     </div>
     <div v-if="showBadge" class="event-badge">AI Detected</div>
@@ -61,11 +64,6 @@ const eventIcon = computed(() => getEventIcon(props.event.name))
   background-color: #333333;
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.event-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
 }
 
 .event-details {
