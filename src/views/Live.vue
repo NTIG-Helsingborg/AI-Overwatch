@@ -58,7 +58,7 @@ const toggleLive = () => {
         </div>
         <div class="live-feed-placeholder">
           <h2>Live Video Feed</h2>
-<img src="http://192.168.50.63:5000/video" style="max-width: 80%; height: auto; border: 2px solid #4a4a4a; border-radius: 8px;">
+            <img src="http://192.168.50.63:5000/video" style="width: 80%; height: auto; border: 2px solid #4a4a4a; border-radius: 8px;">
         </div>
       </div>
     </div>
@@ -163,8 +163,8 @@ const toggleLive = () => {
 }
 
 .live-feed-placeholder {
-  display: flex;
-  flex-direction: column;
+  width: 65%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -173,7 +173,6 @@ const toggleLive = () => {
   border: 2px solid #4a4a4a;
   color: #888;
   text-align: center;
-  box-sizing: border-box;
   padding-top: 3%;
 }
 
