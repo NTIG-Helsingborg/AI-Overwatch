@@ -31,6 +31,10 @@ onUnmounted(() => {
 
 const recentEvents = computed(() => {
   return [...events.value]
+    .filter(event => {
+      const gestureName = event.gesture_type || event.name
+      return gestureName && gestureName.toLowerCase() !== 'none'
+    })
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     .slice(0, 6)
 })
